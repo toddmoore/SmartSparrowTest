@@ -39,6 +39,7 @@ export class RangeComponent extends React.Component {
   render(){
     return (
       <div>
+        <VelocityInput value={this.state.value} />
         <input type="range" className="RangeComponent" ref="input"
           onChange={this.handleInputChange}
           onInput={this.handleInputChange}
@@ -56,6 +57,7 @@ export class RangeComponent extends React.Component {
           defaultValue={this.state.value}
           value={this.state.value}
           step={1} />
+
         <Canvas position={this.state.value} />
       </div>
 
@@ -173,7 +175,6 @@ export class Canvas extends React.Component {
 
     return (
       <div>
-          <VelocityInput value={this.props.position} />
           <canvas ref="CanvasElement"
               width={this.state.width}
               height={this.state.height}

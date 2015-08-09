@@ -1,43 +1,75 @@
-# Express app with Gulp.js build system
+## Smart Sparrow Coding Task
 
-This app contains a [Gulp](http://gulpjs.com/) configuration which will
+#### Overview
 
-* Restart the app on **.js**, **.json** or **.hjs** file changes via [gulp-nodemon](https://github.com/JacksonGariety/gulp-nodemon)
-* Automatically compile [SASS](http://sass-lang.com/) stylesheets to CSS via [gulp.watch](https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb) and [gulp-ruby-sass](https://github.com/sindresorhus/gulp-ruby-sass)
+-------
+##### Docker
+I've been meaning to try out docker for awhile so I thought I'd give it a shot with this coding task and hey, it's great! If you want to fire up the docker server, then you just need to install [docker](https://docs.docker.com/installation/) and [docker compose](https://docs.docker.com/compose/install/).
 
-## Prerequisites
+Once you have the docker VM running you can run:
 
-Install [Docker](https://www.docker.com/) on your system.
+    docker-compose build
 
-* [Install instructions](https://docs.docker.com/installation/mac/) for Mac OS X
-* [Install instructions](https://docs.docker.com/installation/ubuntulinux/) for Ubuntu Linux
-* [Install instructions](https://docs.docker.com/installation/) for other platforms
+And then once that is complete:
 
-Install [Docker Compose](http://docs.docker.com/compose/) on your system.
+    docker-compose up
 
-* Python/pip: `sudo pip install -U docker-compose`
-* Other: ``curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; chmod +x /usr/local/bin/docker-compose``
+That will get the development ubuntu container going (Docker will let you know what IP to use).
 
-## Setup
+-------
+##### bin
 
-Run `docker-compose build`. It will
+If you're super busy though and don't have time for that (why would you?) then I have included a compiled version of the project in app/bin. You should be able to open that using file protocol (not Chrome, canvas and images has a same origin policy issue), or, if you want, python SimpleHTTPServer (recommended).
 
-* install [Ruby](https://www.ruby-lang.org) and [SASS](https://rubygems.org/gems/sass)
-* install [Gulp](http://gulpjs.com/) globally
-* install all dependencies from the package.json locally
-* expose port 3000 to the host
-* instruct the container to execute `gulp --gulpfile app/gulpfile.js` on start up.
+    python -m SimpleHTTPServer
 
-## Start
+------
+##### Browser Support
 
-Run `docker-compose up` to create and start the container. The app should then be running on your docker daemon on port 3030 (On OS X you can use `boot2docker ip` to find out the IP address).
+I've tested it for the following:
 
-Go ahead and change any SASS stylesheet inside app/public/sass, and watch it autmatically compile to CSS.
+  - Android 4.4+
+  - iOS 7+
+  - Safari 7 +
+  - Firefox Latest (Mac & Win)
+  - IE11
+  - Chrome Latest (Mac)
 
-## Notes on boot2docker
+I does "work" on Android 4.3 native browser, but the canvas filter is a bit yuk. I figured though for the purposes of this test it's probably fine.
 
-It [appears](https://github.com/boot2docker/boot2docker/issues/290) that boot2docker (OS X, Windows) currently does not automatically sync the system clock with the host system after a host resumes from sleep. This becomes a problem due to the way nodemon detects file changes. That might cause it to go bananas, if the clocks on both systems are "too much" out of sync. Until this is fixed, you might use [this workaround](https://github.com/boot2docker/boot2docker/issues/290#issuecomment-62384209) or simply do a manual sync via
+#### Approach
+-----
+##### ReactJS & Canvas
 
-```bash
-/usr/local/bin/boot2docker ssh sudo ntpclient -s -h pool.ntp.org
-```
+I decided to use React and Canvas together as I've used this combo once before and I found it pretty powerful. I could have taken a pure Canvas approach, but like the API easelJS/createJS offers, so I decided to use that.
+
+I also could have done away with React entirely and just done plain javascript, but, why not use a great tool? I'm still learning React, but so far I'm pretty impressed.
+
+##### No Unit Tests
+I decided not to implement unit tests here, which on reflection may have been a mistake. I'll discuss shortcomings next, but I think that tests would have been helpful around the scaling functions.
+
+##### Application Structure
+
+    /app
+      |-- lib (js & jsx)
+        `-- bootstrap (entry point)
+          `-- app.jsx
+            `-- Application
+              `-- RangeComponent
+                |-- VelocityInput
+                |-- Canvas
+          |-- utils
+            `-- Utilies
+              |-- debounce
+            |-- ImageLoader
+
+
+
+#### Improvements
+-----
+My main improvement would be understanding log scaling and exponential scaling more. I was a little lost when I got done to the scaling functions. Also, the colorFilter in easelJS wasn't great, and it took me a while to get it to work close to what we wanted. If the colors where more detailed (i.e. a rainbow), I'd be in a lot of trouble and would have had to abandon that approach as it wouldn't be flexible at all.
+
+I also note that the Velocity input was read only.
+
+-----
+#### Docker Notes for future reference
