@@ -1,3 +1,4 @@
 app/node_modules/*
 app/jspm_packages/*
 app/.sass-cache/*
+.DS_Store
