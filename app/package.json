@@ -1,0 +1,32 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "gulp --gulpfile app/gulpfile.js",
+    "postinstall": "./node_modules/.bin/jspm install"
+  },
+  "jspm": {
+    "format": "es6",
+    "dependencies": {
+      "easeljs": "github:CreateJS/EaselJS@^0.8.0",
+      "jsx": "github:floatdrop/plugin-jsx@^1.1.0",
+      "react": "npm:react@^0.13.3"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^0.9.4"
+    }
+  },
+  "devDependencies": {
+    "gulp": "~3.8.8",
+    "gulp-nodemon": "~1.0.4",
+    "gulp-watch": "~1.1.0",
+    "gulp-ruby-sass": "~1.0.1",
+    "gulp-plumber": "~0.6.6",
+    "gulp-livereload": "~2.1.1",
+    "browser-sync": "^2.6.5",
+    "jspm": "latest"
+  }
+}

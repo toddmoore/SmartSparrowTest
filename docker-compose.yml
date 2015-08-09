@@ -1,0 +1,8 @@
+web:
+  net: "bridge"
+  build: .
+  volumes:
+    - "app:/src/app"
+  ports:
+    - "49010:49000"
+    - "49011:49900"
