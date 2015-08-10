@@ -20,6 +20,9 @@ export class VelocityInput extends React.Component {
     )
   }
 }
+VelocityInput.propTypes = {
+  value: React.PropTypes.number
+}
 
 export class RangeComponent extends React.Component {
   constructor(){
