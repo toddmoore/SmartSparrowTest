@@ -29,13 +29,13 @@ If you're super busy though and don't have time for that (why would you?) then I
 I've tested it for the following:
 
   - Android 4.4+
-  - iOS 7+
-  - Safari 7 +
-  - Firefox Latest (Mac & Win)
-  - IE11
-  - Chrome Latest (Mac)
+  - iOS 6+
+  - Safari 7+
+  - Firefox Latest
+  - IE10+ (I wanted to use a native range input)
+  - Chrome Latest
 
-I does "work" on Android 4.3 native browser, but the canvas filter is a bit yuk. I figured though for the purposes of this test it's probably fine.
+I does "work" on Android 4.3 native browser, but the canvas filter is a bit yuk. I figured though for the purposes of this test it's probably fine. If however I had to support 4.3 and below, I would probably remove easelJS and implement a pure canvas approach testing the effect of an image filter as I went on those devices.
 
 #### Approach
 -----

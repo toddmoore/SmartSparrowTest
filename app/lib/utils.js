@@ -1,5 +1,5 @@
 export const Utilies = {
-  // David Walch Debounce function
+  // David Walsh Debounce function
   // http://davidwalsh.name/javascript-debounce-function
   debounce: (func,wait,immediate)=>{
     let timeout;

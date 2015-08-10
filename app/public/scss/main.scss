@@ -1,3 +1,5 @@
+@import 'mq';
+
 body {
   margin: 0;
   padding: 0;
@@ -13,13 +15,17 @@ body {
 }
 .RangeComponent {
   position: absolute;
-  top: .5rem;
+  -webkit-appearance: none;
+  top: 0.5rem;
   width: 40%;
   right: 1rem;
 }
 @at-root {
   fieldset {
     border: none;
+    @include mq($until: desktop){
+      height: 3rem;
+    }
   }
   .label {
     margin-right: .5rem;
@@ -28,6 +34,44 @@ body {
     margin-top: .25rem;
     border: 1px solid rgba(0,0,0,.3);
   }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+  }
+  /* Special styling for WebKit/Blink */
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 15px;
+    width: 15px;
+    @include mq($until: desktop){
+      height: 40px;
+      width: 40px;
+      margin-top: 0px;
+    }
+    border-radius: 3px;
+    background: #eee;
+    cursor: pointer;
+    margin-top: -3px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    @include mq($until: desktop){
+      height: 40px;
+    }
+    cursor: pointer;
+    background: rgba(0,0,0,.5);
+
+
+  }
+
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: rgba(0,0,0,.5);
+  }
 }
 
 .input {
@@ -35,6 +79,8 @@ body {
     max-width: 3rem;
   }
 }
+
+
 
 // IE 11 range position hack - YUK!
 // http://stackoverflow.com/questions/20541306/how-to-write-a-css-hack-for-ie-11

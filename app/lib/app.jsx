@@ -47,7 +47,7 @@ export class RangeComponent extends React.Component {
           /*
             Unfortunately React has a bug with range inputs
             with IE11, so until that is fixed Im assigning the events
-            to mouseUp and keyUp so as it maintain functionality
+            to mouseUp and keyUp so as to maintain functionality
           */
           onMouseUp={this.handleInputChange}
           onKeyUp={this.handleInputChange}
@@ -116,7 +116,7 @@ export class Canvas extends React.Component {
   createBlueMatrix(position){
     let offset = Math.abs(((position+this.minp)/10000000)-1);
     // The last value generates a strange number
-    // A little hack as I'm not a math genius :)
+    // A little hack to fix that
     if(offset < 1){
         return this.generateMatrix(offset,offset,1);
     }
@@ -169,6 +169,7 @@ export class Canvas extends React.Component {
   render(){
     let position = this.logSlider(this.props.position);
     // We don't apply the red filter until we hit a hard limit of 141
+    // so as to have more detail on the blue end of the scale
     let colorMatrix = position > 141 ? this.createBlueMatrix(position) : this.createRedMatrix(position);
     this.applyColor.call(colorMatrix, this.state.image);
     this.centerImage(this.state.image);
@@ -187,7 +188,6 @@ export class Canvas extends React.Component {
     stage.addChild(obj);
     stage.update();
   }
-
 }
 Canvas.propTypes = {
   position: React.PropTypes.number
