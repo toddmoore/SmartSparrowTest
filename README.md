@@ -45,6 +45,10 @@ I decided to use React and Canvas together as I've used this combo once before a
 
 I also could have done away with React entirely and just done plain javascript, but, why not use a great tool? I'm still learning React, but so far I'm pretty impressed.
 
+##### SystemJS and JSPM + ES6/7
+
+I'm a big fan of SystemJS and JSPM. The solution is elegant and not having to build for dev is a dream. I've starting using ES6/7 APIs earlier this year and I haven't looked back. I think the code readability is awesome and it removes the need for sugar like coffeescript or dart. 
+
 ##### No Unit Tests
 I decided not to implement unit tests here, which on reflection may have been a mistake. I'll discuss shortcomings next, but I think that tests would have been helpful around the scaling functions.
 
@@ -73,3 +77,5 @@ I also note that the Velocity input was read only.
 
 -----
 #### Docker Notes for future reference
+
+Running through a clean install of OSX Yosemite with docker and docker compose.
